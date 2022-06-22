@@ -1,0 +1,14 @@
+/Users/roycerabanal/Desktop/TSGPart2/GuessTheNumber/src/main/java/com/sg/guessthenumber/data/GameDaoDatabase.java
+/Users/roycerabanal/Desktop/TSGPart2/GuessTheNumber/src/main/java/com/sg/guessthenumber/controllers/GuessTheNumberExceptionHandler.java
+/Users/roycerabanal/Desktop/TSGPart2/GuessTheNumber/src/main/java/com/sg/guessthenumber/controllers/Error.java
+/Users/roycerabanal/Desktop/TSGPart2/GuessTheNumber/src/main/java/com/sg/guessthenumber/models/Guess.java
+/Users/roycerabanal/Desktop/TSGPart2/GuessTheNumber/src/main/java/com/sg/guessthenumber/TestApplicationConfiguration.java
+/Users/roycerabanal/Desktop/TSGPart2/GuessTheNumber/src/main/java/com/sg/guessthenumber/App.java
+/Users/roycerabanal/Desktop/TSGPart2/GuessTheNumber/src/main/java/com/sg/guessthenumber/data/GameDao.java
+/Users/roycerabanal/Desktop/TSGPart2/GuessTheNumber/src/main/java/com/sg/guessthenumber/data/GuessDaoDatabase.java
+/Users/roycerabanal/Desktop/TSGPart2/GuessTheNumber/src/main/java/com/sg/guessthenumber/models/Game.java
+/Users/roycerabanal/Desktop/TSGPart2/GuessTheNumber/src/main/java/com/sg/guessthenumber/controllers/GuessTheNumberController.java
+/Users/roycerabanal/Desktop/TSGPart2/GuessTheNumber/src/main/java/com/sg/guessthenumber/servicelayer/GuessTheNumberServiceFileImpl.java
+/Users/roycerabanal/Desktop/TSGPart2/GuessTheNumber/src/main/java/com/sg/guessthenumber/servicelayer/GuessTheNumberServiceLayer.java
+/Users/roycerabanal/Desktop/TSGPart2/GuessTheNumber/src/main/java/com/sg/guessthenumber/servicelayer/InvalidGameException.java
+/Users/roycerabanal/Desktop/TSGPart2/GuessTheNumber/src/main/java/com/sg/guessthenumber/data/GuessDao.java
