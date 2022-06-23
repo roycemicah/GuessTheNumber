@@ -18,11 +18,12 @@ public class Guess {
     String result;
     int gameId;
     
-    public Guess (LocalDateTime time, String answer, String result, int gameId) {
-        this.time = time;
+    public Guess(String answer, int gameId) {
         this.answer = answer;
-        this.result = result;
         this.gameId = gameId;
+    }
+
+    public Guess() {
     }
 
     public LocalDateTime getTime() {

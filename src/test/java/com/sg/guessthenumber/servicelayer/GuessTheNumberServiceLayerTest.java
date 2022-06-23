@@ -4,44 +4,32 @@
  */
 package com.sg.guessthenumber.servicelayer;
 
-import com.sg.guessthenumber.TestApplicationConfiguration;
-import com.sg.guessthenumber.models.Game;
-import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import com.sg.guessthenumber.data.GameDao;
+import com.sg.guessthenumber.data.GuessDao;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  *
  * @author roycerabanal
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = TestApplicationConfiguration.class)
+@SpringBootTest
 public class GuessTheNumberServiceLayerTest {
+    
+    @Autowired
+    GameDao gameDao;
+    
+    @Autowired
+    GuessDao guessDao;
     
     public GuessTheNumberServiceLayerTest() {
         
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
+    @BeforeEach
     public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
     }
 
     /**
@@ -63,21 +51,6 @@ public class GuessTheNumberServiceLayerTest {
      */
     @Test
     public void testGetGameById() throws Exception {
-    }
-
-    public class GuessTheNumberServiceLayerImpl implements GuessTheNumberServiceLayer {
-
-        public Game addGame() throws InvalidGameException {
-            return null;
-        }
-
-        public List<Game> getAllGames() throws InvalidGameException {
-            return null;
-        }
-
-        public Game getGameById(int id) throws InvalidGameException {
-            return null;
-        }
     }
     
 }

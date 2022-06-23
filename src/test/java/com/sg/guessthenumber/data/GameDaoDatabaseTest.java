@@ -4,30 +4,23 @@
  */
 package com.sg.guessthenumber.data;
 
-import com.sg.guessthenumber.TestApplicationConfiguration;
 import com.sg.guessthenumber.models.Game;
 import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 
 /**
  *
  * @author roycerabanal
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = TestApplicationConfiguration.class)
+@SpringBootTest
 public class GameDaoDatabaseTest {
     
     @Autowired
@@ -38,16 +31,8 @@ public class GameDaoDatabaseTest {
     
     public GameDaoDatabaseTest() {
     }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
+
+    @BeforeEach
     public void setUp() {
         
         List<Game> allGames = gameDao.getAllGames();
@@ -55,10 +40,6 @@ public class GameDaoDatabaseTest {
             gameDao.deleteGameById(game.getGameId());
         }
         
-    }
-    
-    @After
-    public void tearDown() {
     }
 
     /**

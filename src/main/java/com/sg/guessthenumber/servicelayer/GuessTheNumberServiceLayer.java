@@ -5,6 +5,7 @@
 package com.sg.guessthenumber.servicelayer;
 
 import com.sg.guessthenumber.models.Game;
+import com.sg.guessthenumber.models.Guess;
 import java.util.List;
 
 /**
@@ -14,7 +15,9 @@ import java.util.List;
 public interface GuessTheNumberServiceLayer {
 
     public Game addGame() throws InvalidGameException;
+    public Guess addGuess(Guess guess) throws InvalidGameException;
     public List<Game> getAllGames() throws InvalidGameException;
     public Game getGameById(int id) throws InvalidGameException;
+    public List<Guess> getGuessesByGameId(int gameId) throws InvalidGameException;
     
 }

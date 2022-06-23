@@ -5,11 +5,13 @@
 package com.sg.guessthenumber.data;
 
 import com.sg.guessthenumber.models.Guess;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -17,7 +19,6 @@ import org.springframework.stereotype.Repository;
  * @author roycerabanal
  */
 @Repository
-@Profile("database")
 public class GuessDaoDatabase implements GuessDao {
     
     private final JdbcTemplate jdbc;
@@ -29,15 +30,30 @@ public class GuessDaoDatabase implements GuessDao {
 
     @Override
     public List<Guess> getGuessesByGameId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        final String sql = "SELECT * FROM Guess WHERE GameId = ?";
+        List<Guess> guesses = jdbc.query(sql, new GuessMapper(), id);
+        return guesses;
     }
 
     @Override
     public Guess addGuess(Guess guess) {
-        final String sql = "INSERT INTO Guess (Time, Answer, Result, GameId) VALUES (?,?,?,?);";
-        final String sqlGuessCount = "SELECT COUNT* FROM Guess WHERE GameId = ?;";
+        final String sql = "INSERT INTO Guess (Time, Answer, Result, GameId) VALUES (?,?,?,?)";
         jdbc.update(sql, Timestamp.valueOf(guess.getTime()), guess.getAnswer(), guess.getResult(), guess.getGameId());
         return guess;
+    }
+
+    public static final class GuessMapper implements RowMapper<Guess> {
+        
+        @Override
+        public Guess mapRow(ResultSet rs, int index) throws SQLException {
+            Guess guess = new Guess();
+            guess.setGameId(rs.getInt("GameId"));
+            guess.setAnswer(rs.getString("Answer"));
+            guess.setResult(rs.getString("Result"));
+            guess.setTime(rs.getTimestamp("Time").toLocalDateTime());
+            return guess;
+        }
+        
     }
     
 }

@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -25,7 +24,6 @@ import org.springframework.transaction.annotation.Transactional;
  * @author roycerabanal
  */
 @Repository
-@Profile("database")
 public class GameDaoDatabase implements GameDao {
     
     private final JdbcTemplate jdbc;
@@ -38,7 +36,7 @@ public class GameDaoDatabase implements GameDao {
     @Override
     @Transactional
     public Game addGame(Game game) {
-        final String sql = "INSERT INTO (Answer, GameInProgress) VALUES(?,?);";
+        final String sql = "INSERT INTO Game (Answer, GameInProgress) VALUES(?,?)";
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         
         jdbc.update((Connection conn) -> {
@@ -54,7 +52,7 @@ public class GameDaoDatabase implements GameDao {
 
     @Override
     public List<Game> getAllGames() {
-        final String sql = "SELECT GameId, Answer, GameInProgress;";
+        final String sql = "SELECT GameId, Answer, GameInProgress FROM Game;";
         return jdbc.query(sql, new GameMapper());
     }
 
@@ -72,11 +70,9 @@ public class GameDaoDatabase implements GameDao {
 
     @Override
     public boolean updateGame(Game game) {
-        final String sql = "UPDATE Game SET Answer = ?, GameInProgress = ?, WHERE GameId = ?;";
+        final String sql = "UPDATE Game SET GameInProgress = ? WHERE GameId = ?";
         return jdbc.update(sql, 
-                game.getAnswer(),
-                game.isGameInProgress(),
-                game.getGameId()) > 0;
+                game.isGameInProgress(), game.getGameId()) > 0;
     }
 
     @Override
@@ -95,8 +91,8 @@ public class GameDaoDatabase implements GameDao {
             
             Game game = new Game();
             game.setGameId(rs.getInt("GameId"));
-            game.setAnswer(rs.getString("1"));
-            game.setGameInProgress(rs.getBoolean("finished"));
+            game.setAnswer(rs.getString("Answer"));
+            game.setGameInProgress(rs.getBoolean("GameInProgress"));
             return game;
             
         }
