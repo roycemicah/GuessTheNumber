@@ -12,4 +12,5 @@ com/sg/guessthenumber/data/GameDaoDatabase.class
 com/sg/guessthenumber/data/GuessDao.class
 com/sg/guessthenumber/controllers/Error.class
 com/sg/guessthenumber/models/Guess.class
+com/sg/guessthenumber/servicelayer/InvalidGuessException.class
 com/sg/guessthenumber/servicelayer/GuessTheNumberServiceFileImpl.class

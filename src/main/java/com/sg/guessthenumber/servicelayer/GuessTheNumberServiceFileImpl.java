@@ -63,10 +63,29 @@ public class GuessTheNumberServiceFileImpl implements GuessTheNumberServiceLayer
     }
     
     @Override
-    public Guess addGuess(Guess guess) throws InvalidGameException {
+    public Guess addGuess(Guess guess) throws InvalidGameException, InvalidGuessException {
+        
+        int id = guess.getGameId();
+        Game game = gameDao.getGameById(id);
+        
+        if(game == null) {
+            throw new InvalidGameException("No game found for Game ID : " + id);
+        }
+        
+        if(!game.isGameInProgress()) {
+            throw new InvalidGameException("This game is finished.");
+        }
+        
+        int answerLength = game.getAnswer().length();
+        
+        if(guess.getAnswer().length() != answerLength) {
+            throw new InvalidGuessException("Answer length is not equal to : " + answerLength);
+        }
+        
         calculateResult(guess);
         guess.setTime(LocalDateTime.now());
         return guessDao.addGuess(guess);
+        
     }
     
     private void calculateResult(Guess guess) {

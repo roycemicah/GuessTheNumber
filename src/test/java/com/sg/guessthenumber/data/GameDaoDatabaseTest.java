@@ -7,8 +7,7 @@ package com.sg.guessthenumber.data;
 import com.sg.guessthenumber.models.Game;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -49,18 +48,18 @@ public class GameDaoDatabaseTest {
     public void testGetAllGames() {
         
         Game game = new Game();
-        game.setAnswer("5318");
+        game.setAnswer("1234");
         game.setGameInProgress(true);
         game = gameDao.addGame(game);
         
         Game game2 = new Game();
-        game2.setAnswer("3416");
+        game2.setAnswer("9876");
         game2.setGameInProgress(true);
         game2 = gameDao.addGame(game2);
         
         List<Game> allGames = gameDao.getAllGames();
         
-        assertEquals(2, allGames.size());
+        assertEquals(allGames.size(), 2);
         assertTrue(allGames.contains(game));
         assertTrue(allGames.contains(game2));
         
@@ -68,13 +67,15 @@ public class GameDaoDatabaseTest {
     
     @Test
     public void testAddGetGame() {
+        
         Game game = new Game();
-        game.setAnswer("5318");
+        game.setAnswer("1234");
         game.setGameInProgress(true);
         game = gameDao.addGame(game);
         
         Game fromDao = gameDao.getGameById(game.getGameId());
         assertEquals(game, fromDao);
+        
     }
 
     /**
@@ -84,7 +85,7 @@ public class GameDaoDatabaseTest {
     public void testUpdateGame() {
         
         Game game = new Game();
-        game.setAnswer("3416");
+        game.setAnswer("1234");
         game.setGameInProgress(true);
         game = gameDao.addGame(game);
         
@@ -93,7 +94,8 @@ public class GameDaoDatabaseTest {
         
         game.setGameInProgress(false);
         gameDao.updateGame(game);
-        assertNotEquals(game, fromDao);
+        
+        assertTrue(game != fromDao);
         fromDao = gameDao.getGameById(game.getGameId());
         assertEquals(game, fromDao);
         
@@ -106,20 +108,28 @@ public class GameDaoDatabaseTest {
     public void testDeleteGameById() {
         
         Game game = new Game();
-        game.setAnswer("5318");
+        game.setAnswer("1234");
         game.setGameInProgress(true);
         game = gameDao.addGame(game);
         
         Game game2 = new Game();
-        game2.setAnswer("3416");
+        game2.setAnswer("9876");
         game2.setGameInProgress(true);
         game2 = gameDao.addGame(game2);
         
-        gameDao.deleteGameById(game.getGameId());
+        List<Game> allGames = gameDao.getAllGames();
+        
+        assertEquals(allGames.size(), 2);
+        assertTrue(allGames.contains(game));
+        assertTrue(allGames.contains(game2));
+        
         gameDao.deleteGameById(game2.getGameId());
         
-        Game fromDao = gameDao.getGameById(game.getGameId());
-        assertNull(fromDao);
+        allGames = gameDao.getAllGames();
+        
+        assertEquals(allGames.size(), 1);
+        assertTrue(allGames.contains(game));
+        assertFalse(allGames.contains(game2));
         
     }
     

@@ -5,6 +5,7 @@
 /Users/roycerabanal/Desktop/TSGPart2/GuessTheNumber/src/main/java/com/sg/guessthenumber/App.java
 /Users/roycerabanal/Desktop/TSGPart2/GuessTheNumber/src/main/java/com/sg/guessthenumber/data/GameDao.java
 /Users/roycerabanal/Desktop/TSGPart2/GuessTheNumber/src/main/java/com/sg/guessthenumber/data/GuessDaoDatabase.java
+/Users/roycerabanal/Desktop/TSGPart2/GuessTheNumber/src/main/java/com/sg/guessthenumber/servicelayer/InvalidGuessException.java
 /Users/roycerabanal/Desktop/TSGPart2/GuessTheNumber/src/main/java/com/sg/guessthenumber/models/Game.java
 /Users/roycerabanal/Desktop/TSGPart2/GuessTheNumber/src/main/java/com/sg/guessthenumber/controllers/GuessTheNumberController.java
 /Users/roycerabanal/Desktop/TSGPart2/GuessTheNumber/src/main/java/com/sg/guessthenumber/servicelayer/GuessTheNumberServiceFileImpl.java

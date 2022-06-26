@@ -5,6 +5,7 @@
 package com.sg.guessthenumber.models;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 /**
@@ -31,7 +32,7 @@ public class Guess {
     }
 
     public void setTime(LocalDateTime time) {
-        this.time = time;
+        this.time = time.truncatedTo(ChronoUnit.SECONDS);
     }
 
     public String getAnswer() {

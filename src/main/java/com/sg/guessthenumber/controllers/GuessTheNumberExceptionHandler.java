@@ -4,6 +4,8 @@
  */
 package com.sg.guessthenumber.controllers;
 
+import com.sg.guessthenumber.servicelayer.InvalidGameException;
+import com.sg.guessthenumber.servicelayer.InvalidGuessException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +31,26 @@ public class GuessTheNumberExceptionHandler extends ResponseEntityExceptionHandl
         
         Error err = new Error();
         err.setMessage(CONSTRAINT_MESSAGE);
+        return new ResponseEntity<>(err, HttpStatus.UNPROCESSABLE_ENTITY);
+        
+    }
+    
+    @ExceptionHandler(InvalidGameException.class)
+    public final ResponseEntity<Error> handleInvalidGameException(InvalidGameException ex,
+            WebRequest request) {
+        
+        Error err = new Error();
+        err.setMessage(ex.getMessage());
+        return new ResponseEntity<>(err, HttpStatus.UNPROCESSABLE_ENTITY);
+        
+    }
+    
+    @ExceptionHandler(InvalidGuessException.class)
+    public final ResponseEntity<Error> handleInvalidGuessException(InvalidGuessException ex,
+            WebRequest request) {
+        
+        Error err = new Error();
+        err.setMessage(ex.getMessage());
         return new ResponseEntity<>(err, HttpStatus.UNPROCESSABLE_ENTITY);
         
     }

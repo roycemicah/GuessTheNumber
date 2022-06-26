@@ -8,6 +8,7 @@ import com.sg.guessthenumber.models.Game;
 import com.sg.guessthenumber.models.Guess;
 import com.sg.guessthenumber.servicelayer.GuessTheNumberServiceLayer;
 import com.sg.guessthenumber.servicelayer.InvalidGameException;
+import com.sg.guessthenumber.servicelayer.InvalidGuessException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +34,7 @@ public class GuessTheNumberController {
     }
     
     @PostMapping("/guess")
-    public ResponseEntity<Guess> create(@RequestBody Guess guess) throws InvalidGameException {
+    public ResponseEntity<Guess> create(@RequestBody Guess guess) throws InvalidGameException, InvalidGuessException {
         return ResponseEntity.ok(service.addGuess(guess));
     }
     
