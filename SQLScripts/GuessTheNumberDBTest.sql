@@ -16,4 +16,4 @@ CREATE TABLE Guess (
 	GameId INT NOT NULL,
 	CONSTRAINT fk_Guess_Game FOREIGN KEY (GameId)
 		REFERENCES Game(GameId)
-)
+);
